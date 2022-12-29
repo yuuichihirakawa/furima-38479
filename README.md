@@ -46,43 +46,44 @@ Things you may want to cover:
 
 | Column                     | Type       | Options                        |
 | -------------------------- | ---------- | -------------------------------|
-| item_name                  | text       | null: false                    |
+| item_name                  | string     | null: false                    |
 | product_description        | text       | null: false                    |
 | item_category_id           | integer    | null: false                    |
 | item_state_id              | integer    | null: false                    |
 | item_price                 | integer    | null: false                    |
 | delivery_charge_burden_id  | integer    | null: false                    |
 | days_up_to_delivery_id     | integer    | null: false                    |
-| delivery_prefectures_id    | integer    | null: false                    |
-| nickname                   | references | null: false, foreign_key: true |
+| delivery_prefecture_id     | integer    | null: false                    |
+| nickname                   | references | null: false, foreign_key: user |
 
 ### Association
 - belongs_to :user
-- has_one :purchase_records
+- has_one :purchase_record
 
 
 ## purchase_recordsテーブル
 
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| item_name             | references | null: false, foreign_key: true |
-| nickname              | references | null: false, foreign_key: true |
+| item_name             | references | null: false, foreign_key: item |
+| nickname              | references | null: false, foreign_key: user |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
+- has_one :delivery_address_multiple
 
 
 ## delivery_address_multiplesテーブル
 | Column                  | Type       | Options                        |
 | ----------------------- | ---------- | ------------------------------ |
-| postal_code_id          | integer    | null: false                    |
-| address_prefectures_id  | references | null: false, foreign_key: true |
+| postal_code             | string     | null: false                    |
+| address_prefectures_id  | references | null: false, foreign_key: item |
 | address_municipality    | string     | null: false                    |
 | address_block           | string     | null: false                    |
 | address_building        | string     |                                |
 | telephone_number        | string     | null: false                    |
-| nickname                | references | null: false, foreign_key: true |
+| nickname                | references | null: false, foreign_key: user |
 
 ### Association
 - belongs_to :purchase_record
