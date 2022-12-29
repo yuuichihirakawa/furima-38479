@@ -28,14 +28,14 @@ Things you may want to cover:
 
 | Column                       | Type   | Options                   |
 | ---------------------------- | ------ | ------------------------- |  
-| nickname                     | string | null: false, unique: true |
+| nickname                     | string | null: false,              |
 | email                        | string | null: false, unique: true |
 | encrypted_password           | string | null: false               |
 | first_name                   | string | null: false               |
 | first_name_kana              | string | null: false               |
 | last_name                    | string | null: false               |
 | last_name_kana               | string | null: false               |
-| birth_date                   | string | null: false               |
+| birth_date                   | date   | null: false               |
 
 
 ### Association
@@ -44,23 +44,21 @@ Things you may want to cover:
 
 ## itemsテーブル
 
-| Column                     | Type   | Options     |
-| -------------------------- | ------ | ------------|
-| item_name                  | text   | null: false |
-| item_image                 | image  | null: false |
-| product_description        | text   | null: false |
-| item_category              | text   | null: false |
-| item_state                 | text   | null: false |
-| item_price                 | string | null: false |
-| sales_fee                  | string | null: false |
-| sales_profit               | string | null: false |
-| delivery_charge_burden     | string | null: false |
-| days_up_to_delivery        | string | null: false |
-| delivery_area              | string | null: false |
+| Column                     | Type       | Options                        |
+| -------------------------- | ---------- | -------------------------------|
+| item_name                  | text       | null: false                    |
+| product_description        | text       | null: false                    |
+| item_category_id           | integer    | null: false                    |
+| item_state_id              | integer    | null: false                    |
+| item_price                 | integer    | null: false                    |
+| delivery_charge_burden_id  | integer    | null: false                    |
+| days_up_to_delivery_id     | integer    | null: false                    |
+| delivery_prefectures_id    | integer    | null: false                    |
+| nickname                   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- belongs_to :purchase_records
+- has_one :purchase_records
 
 
 ## purchase_recordsテーブル
@@ -68,12 +66,7 @@ Things you may want to cover:
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
 | item_name             | references | null: false, foreign_key: true |
-| item_image            | references | null: false, foreign_key: true |
-| item_price            | references | null: false, foreign_key: true |
-| card_information      | string     | null: false                    |
-| expiration_date_year  | string     | null: false                    |
-| expiration_date_month | string     | null: false                    |
-| security_code         | string     | null: false                    |
+| nickname              | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -81,14 +74,15 @@ Things you may want to cover:
 
 
 ## delivery_address_multiplesテーブル
-| Column               | Type       | Options                        |
-| -------------------- | ---------- | ------------------------------ |
-| postal_code          | string     | null: false                    |
-| address_prefectures  | text       | null: false                    |
-| address_municipality | text       | null: false                    |
-| address_block        | string     | null: false                    |
-| address_building     | text       | null: false                    |
-| telephone_number     | string     | null: false                    |
+| Column                  | Type       | Options                        |
+| ----------------------- | ---------- | ------------------------------ |
+| postal_code_id          | integer    | null: false                    |
+| address_prefectures_id  | references | null: false, foreign_key: true |
+| address_municipality    | string     | null: false                    |
+| address_block           | string     | null: false                    |
+| address_building        | string     |                                |
+| telephone_number        | string     | null: false                    |
+| nickname                | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :purchase_record
