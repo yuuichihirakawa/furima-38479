@@ -71,4 +71,3 @@ gem 'image_processing', '~> 1.2'
 gem 'mail', '2.7.1'
 
 gem 'active_hash'
-gem 'nokogiri'
