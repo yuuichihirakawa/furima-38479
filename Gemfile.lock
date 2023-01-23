@@ -294,6 +294,7 @@ DEPENDENCIES
   mail (= 2.7.1)
   mini_magick
   mysql2 (>= 0.4.4)
+  nokogiri
   pg
   pry-rails
   puma (~> 3.11)
