@@ -1,9 +1,9 @@
 class DeliveryAddressMultiples
-  include ActiveModel::model
-  attr_accessor :price, :user_id, :postal_code, :address_prefecture_id, :address_municipality, :address_block, :address_building, :telephone_number, :purchase_record
+  include ActiveModel::Model
+  attr_accessor :item_price, :user_id, :postal_code, :address_prefecture_id, :address_municipality, :address_block, :address_building, :telephone_number, :purchase_record
 
   with_options presence: true do
-    validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid'}
+    validates :item_price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid'}
     validates :user_id
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :address_municipality
