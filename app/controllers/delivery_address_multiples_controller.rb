@@ -9,7 +9,7 @@ class DeliveryAddressMultiplesController < ApplicationController
     @delivery_address_multiples = DeliveryAddressMultiples.new(delivery_address_multiples_params)
       if @delivery_address_multiples.valid?
         @delivery_address_multiples.save
-        return rredirect_to root_path
+        return redirect_to root_path
       else
         render 'index'
       end
@@ -18,7 +18,7 @@ class DeliveryAddressMultiplesController < ApplicationController
   private
 
   def delivery_address_multiples_params
-    params.require(:delivery_address_multiples).permit(:delivery_address)
+    params.require(:delivery_address_multiples).permit(:postal_code, :address_municipality, :address_block, :telephone_number, :address_prefecture_id)
   end
 
 end
