@@ -18,7 +18,7 @@ class DeliveryAddressMultiplesController < ApplicationController
   private
 
   def delivery_address_multiples_params
-    params.require(:delivery_address_multiples).permit(:postal_code, :address_municipality, :address_block, :telephone_number, :address_prefecture_id)
+    params.require(:delivery_address_multiples).permit(:postal_code, :address_municipality, :address_block, :telephone_number, :address_prefecture_id).merge(user_id: current_user.id, item_id: @item.id)
   end
 
 end
