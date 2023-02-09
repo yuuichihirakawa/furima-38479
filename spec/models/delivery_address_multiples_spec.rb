@@ -48,17 +48,22 @@ RSpec.describe DeliveryAddressMultiples, type: :model do
     it "telephone_numberが9桁以下では保存ができないこと" do
       @delivery_address_multiples.telephone_number  = '090123456'
       @delivery_address_multiples.valid?
-      expect(@delivery_address_multiples.errors.full_messages).to include("Telephone number is invalid")
+      expect(@delivery_address_multiples.errors.full_messages).to include("Telephone number は、10桁、11桁で設定してください")
     end
     it "telephone_numberが12桁以上では保存ができないこと" do
       @delivery_address_multiples.telephone_number  = '090123456789'
       @delivery_address_multiples.valid?
-      expect(@delivery_address_multiples.errors.full_messages).to include("Telephone number is invalid")
+      expect(@delivery_address_multiples.errors.full_messages).to include("Telephone number は、10桁、11桁で設定してください")
     end
     it "telephone_numberが半角数値でないと保存ができないこと" do
       @delivery_address_multiples.telephone_number  = '0901234567８'
       @delivery_address_multiples.valid?
-      expect(@delivery_address_multiples.errors.full_messages).to include("Telephone number is invalid")
+      expect(@delivery_address_multiples.errors.full_messages).to include("Telephone number は半角数字のみを使用してください")
+    end
+    it "tokenが空では登録できないこと" do
+      @delivery_address_multiples.token  = nil
+      @delivery_address_multiples.valid?
+      expect(@delivery_address_multiples.errors.full_messages).to include("Token can't be blank")
     end
   end
 end
