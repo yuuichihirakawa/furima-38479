@@ -1,4 +1,5 @@
 class DeliveryAddressMultiplesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_delivery, only: [:index, :create]
   before_action :set_address, only: [:index, :create]
 
