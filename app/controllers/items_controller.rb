@@ -5,7 +5,8 @@ class ItemsController < ApplicationController
   
 
   def index
-    @items = Item.all
+
+
     @items = Item.order("created_at DESC")
   end
 
@@ -26,6 +27,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.user_id == current_user.id || @item.purchase_record != nil
+      redirect_to root_path
+    end
   end
 
   def update
@@ -51,7 +55,6 @@ class ItemsController < ApplicationController
   end
 
   def correct_item
-    @item = Item.find(params[:id])
     unless @item.user.id == current_user.id
       redirect_to items_path
     end
