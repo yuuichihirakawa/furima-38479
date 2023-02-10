@@ -12,6 +12,10 @@ RSpec.describe DeliveryAddressMultiples, type: :model do
     it "入力に問題がなければ保存ができること" do
       expect(@delivery_address_multiples).to be_valid
     end
+    it '建物名が空でも購入できる' do
+      @delivery_address_multiples.address_building = ''
+      expect(@delivery_address_multiples).to be_valid
+    end
   end
 
   context '内容に問題がある場合' do
@@ -64,6 +68,16 @@ RSpec.describe DeliveryAddressMultiples, type: :model do
       @delivery_address_multiples.token  = nil
       @delivery_address_multiples.valid?
       expect(@delivery_address_multiples.errors.full_messages).to include("Token can't be blank")
+    end
+    it "itemが紐づいていないと保存ができないこと" do
+      @delivery_address_multiples.item_id  = nil
+      @delivery_address_multiples.valid?
+      expect(@delivery_address_multiples.errors.full_messages).to include("Item can't be blank")
+    end
+    it "userが紐づいていないと保存ができないこと" do
+      @delivery_address_multiples.user_id  = nil
+      @delivery_address_multiples.valid?
+      expect(@delivery_address_multiples.errors.full_messages).to include("User can't be blank")
     end
   end
 end

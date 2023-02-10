@@ -8,13 +8,13 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
+
       <% if @item.purchase_record.present? %>
         <div class="sold-out">
           <span>Sold Out!!</span>
         </div>
       <% end %>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -35,10 +35,6 @@
         <%= link_to "購入画面に進む", item_delivery_address_multiples_path(@item.id) ,class:"item-red-btn"%>
       <% end %>
     <% end %>
-
-    <%# <% if user_signed_in? && current_user.id != @item.user_id%>
-     <%# <%= link_to "購入画面に進む", item_delivery_address_multiples_path(@item.id) ,class:"item-red-btn"%>
-    <%# <% end %>
 
 
 
