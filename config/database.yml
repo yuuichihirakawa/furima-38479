@@ -57,8 +57,9 @@ test:
 #
 production:
   <<: *default
-  adapter: postgresql
-  url: <%= ENV['DATABASE_URL'] %>
-  # database: furima_38479_production
-  # username: furima_38479
-  # password: <%= ENV['FURIMA_38479_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  # url: <%= ENV['DATABASE_URL'] %>
+  database: furima_38479_production
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
